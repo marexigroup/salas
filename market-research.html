@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Primitivo — Market & Competition</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='11' y='17' width='10' height='13' fill='%23243A24'/><rect x='9' y='13' width='14' height='5' fill='%23243A24'/><rect x='9' y='9' width='3' height='5' fill='%23243A24'/><rect x='14' y='9' width='4' height='5' fill='%23243A24'/><rect x='20' y='9' width='3' height='5' fill='%23243A24'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:    #243A24;
+      --green-lt: #2E4A2E;
+      --stone:    #C9A96E;
+      --cream:    #F5F0E8;
+      --white:    #FDFAF5;
+      --charcoal: #1C1A17;
+      --muted:    #7A7060;
+      --rule:     rgba(28,26,23,0.1);
+      --tag-bg:   rgba(201,169,110,0.12);
+
+      /* region colors */
+      --europe:   #2A4A6B;
+      --med:      #7B4A1E;
+      --asia:     #2A5A4A;
+      --warning:  #7B2A2A;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--green);
+      padding: 4rem 3rem 3.5rem;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .header-brand {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 0.75rem;
+    }
+    header h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 300;
+      color: white; line-height: 1.15;
+    }
+    .header-meta {
+      font-size: 0.72rem; color: rgba(255,255,255,0.45);
+      text-align: right; line-height: 1.8;
+    }
+
+    /* ── WRAP ── */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 3.5rem 3rem; }
+
+    /* ── SECTION TITLES ── */
+    .section-head {
+      display: flex; align-items: baseline; gap: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem;
+    }
+    .section-head h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem; font-weight: 400; color: var(--charcoal);
+    }
+    .section-head span {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── MARKET STATS ── */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .stat-cell {
+      background: var(--white); padding: 1.75rem 1.5rem;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.5rem; font-weight: 300; color: var(--green); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.4;
+    }
+
+    /* ── REGION LABEL ── */
+    .region-label {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      font-weight: 600; padding: 0.3rem 0.6rem;
+      border-radius: 2px; display: inline-block; margin-bottom: 1.5rem;
+    }
+    .region-europe { background: rgba(42,74,107,0.1); color: var(--europe); }
+    .region-med    { background: rgba(123,74,30,0.1); color: var(--med); }
+    .region-asia   { background: rgba(42,90,74,0.1);  color: var(--asia); }
+    .region-warn   { background: rgba(123,42,42,0.1); color: var(--warning); }
+
+    /* ── COMPETITOR CARDS ── */
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 1.5rem;
+    }
+    .cards-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .card {
+      background: var(--white); padding: 1.75rem;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
+    .card-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem; font-weight: 400; line-height: 1.1;
+    }
+    .card-flag { font-size: 1.1rem; }
+    .card-location {
+      font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--tag-bg); color: var(--muted);
+      padding: 0.25rem 0.55rem; border-radius: 2px;
+    }
+    .card-price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem; font-weight: 300; color: var(--green);
+    }
+    .card-price-label { font-size: 0.65rem; color: var(--muted); }
+    .card-desc {
+      font-size: 0.82rem; line-height: 1.75; color: var(--charcoal);
+      flex: 1;
+    }
+    .card-lesson {
+      border-top: 1px solid var(--rule); padding-top: 1rem;
+    }
+    .card-lesson-label {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 0.4rem; font-weight: 600;
+    }
+    .card-lesson p {
+      font-size: 0.8rem; line-height: 1.65; color: var(--muted);
+    }
+
+    /* ── WARNING CARD (Selina) ── */
+    .card-warning { background: #FDF5F5; }
+    .card-warning .card-name { color: var(--warning); }
+
+    /* ── COMPARISON TABLE ── */
+    .table-wrap { overflow-x: auto; margin-bottom: 3.5rem; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    thead tr { background: var(--green); }
+    thead th {
+      padding: 0.9rem 1rem; text-align: left;
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); font-weight: 500;
+      white-space: nowrap;
+    }
+    thead th:first-child { color: var(--stone); }
+    tbody tr { border-bottom: 1px solid var(--rule); }
+    tbody tr:nth-child(even) { background: rgba(0,0,0,0.018); }
+    tbody tr.highlight-row { background: rgba(36,58,36,0.06); }
+    td {
+      padding: 0.85rem 1rem; vertical-align: middle; line-height: 1.4;
+    }
+    td:first-child { font-weight: 500; }
+    .td-primitive td:first-child {
+      color: var(--green); font-weight: 600;
+    }
+    .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 0.3rem; vertical-align: middle; }
+    .dot-green  { background: #4CAF50; }
+    .dot-yellow { background: #FFC107; }
+    .dot-red    { background: #F44336; }
+    .dot-grey   { background: #9E9E9E; }
+
+    /* ── LESSONS GRID ── */
+    .lessons-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .lesson-card { background: var(--white); padding: 1.75rem; }
+    .lesson-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.25rem; font-weight: 300; color: var(--stone); line-height: 1; margin-bottom: 0.75rem;
+    }
+    .lesson-title {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--charcoal); font-weight: 600; margin-bottom: 0.6rem;
+    }
+    .lesson-body { font-size: 0.82rem; line-height: 1.75; color: var(--muted); }
+    .lesson-source {
+      font-size: 0.65rem; color: var(--stone); margin-top: 0.6rem; font-style: italic;
+    }
+
+    /* ── POSITIONING ── */
+    .position-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+    }
+    .pos-card { background: var(--white); padding: 2rem; }
+    .pos-card.pos-green { background: var(--green); }
+    .pos-title {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.25rem; font-weight: 600;
+    }
+    .pos-card.pos-green .pos-title { color: var(--stone); }
+    .pos-list { list-style: none; }
+    .pos-list li {
+      font-size: 0.85rem; line-height: 1.65; padding: 0.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex; gap: 0.75rem; align-items: flex-start;
+    }
+    .pos-card.pos-green .pos-list li { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); }
+    .pos-list li:last-child { border-bottom: none; }
+    .pos-list li::before { content: '→'; color: var(--stone); flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+      font-size: 0.7rem; color: var(--muted);
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.95rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--charcoal); text-decoration: none;
+    }
+
+    /* ── ADDITIONAL REGION LABELS ── */
+    .region-global   { background: rgba(74,42,107,0.1);  color: #4A2A6B; }
+    .region-places   { background: rgba(107,90,30,0.1);  color: #6B5A1E; }
+    .region-popup    { background: rgba(30,90,90,0.1);   color: #1E5A5A; }
+    .region-netstate { background: rgba(90,30,60,0.1);   color: #5A1E3A; }
+
+    /* ── SECTION BRIDGE ── */
+    .section-bridge {
+      background: var(--charcoal); padding: 4rem 3rem;
+    }
+    .section-bridge-inner { max-width: 1200px; margin: 0 auto; }
+    .section-bridge-label {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 0.75rem; font-weight: 600;
+    }
+    .section-bridge h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300;
+      color: white; line-height: 1.3; margin-bottom: 1rem;
+    }
+    .section-bridge p {
+      font-size: 0.875rem; line-height: 1.85; color: rgba(255,255,255,0.6);
+      max-width: 760px;
+    }
+
+    /* ── MINI GRID (concept-stage) ── */
+    .mini-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .mini-card { background: var(--white); padding: 1.4rem 1.5rem; }
+    .mini-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem; font-weight: 400; margin-bottom: 0.25rem;
+    }
+    .mini-flag { font-size: 0.9rem; }
+    .mini-status {
+      font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 0.6rem; display: block;
+    }
+    .status-active  { color: #4CAF50; }
+    .status-early   { color: var(--stone); }
+    .status-defunct { color: var(--warning); }
+    .mini-desc { font-size: 0.78rem; line-height: 1.7; color: var(--muted); }
+
+    /* ── SPECTRUM ── */
+    .spectrum-band { background: var(--green); padding: 3.5rem 3rem; margin-bottom: 0; }
+    .spectrum-inner { max-width: 1200px; margin: 0 auto; }
+    .spectrum-label-top {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 1.5rem; font-weight: 600;
+    }
+    .spectrum-track {
+      display: grid; grid-template-columns: repeat(6, 1fr);
+      gap: 2px; background: rgba(255,255,255,0.08);
+    }
+    .spectrum-step { background: rgba(255,255,255,0.04); padding: 1.25rem 1rem; }
+    .spectrum-step.hl { background: rgba(201,169,110,0.18); }
+    .sp-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.95rem; color: white; margin-bottom: 0.3rem; line-height: 1.2;
+    }
+    .spectrum-step.hl .sp-name { color: var(--stone); font-size: 1.05rem; }
+    .sp-sub { font-size: 0.62rem; color: rgba(255,255,255,0.4); line-height: 1.4; }
+    .spectrum-step.hl .sp-sub { color: rgba(255,255,255,0.65); }
+    .spectrum-axis {
+      display: flex; justify-content: space-between; margin-top: 1rem;
+      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── CARD & MINI NAME LINKS ── */
+    .card-name a, .mini-name a {
+      color: inherit; text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .card-name a:hover, .mini-name a:hover {
+      color: var(--stone); border-bottom-color: var(--stone);
+    }
+    .card-warning .card-name a:hover { color: #c0504a; border-bottom-color: #c0504a; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .wrap { padding: 2.5rem 1.5rem; }
+      header { padding: 2.5rem 1.5rem 2rem; }
+      .section-bridge { padding: 2.5rem 1.5rem; }
+      .spectrum-band { padding: 2.5rem 1.5rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .cards-grid, .cards-grid.cols-2, .cards-grid.cols-4 { grid-template-columns: 1fr; }
+      .lessons-grid, .position-grid { grid-template-columns: 1fr; }
+      .mini-grid { grid-template-columns: repeat(2, 1fr); }
+      .spectrum-track { grid-template-columns: repeat(3, 1fr); }
+      footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="header-brand">El Primitivo · Salas, Asturias</div>
+      <h1>Market &amp; Competition<br>Global Coliving Landscape</h1>
+    </div>
+    <div class="header-meta">
+      Internal briefing<br>
+      November 2026<br>
+      Confidential
+    </div>
+  </div>
+</header>
+
+<!-- MARKET OVERVIEW -->
+<div class="wrap">
+  <div class="section-head">
+    <h2>Global Market</h2>
+    <span>Coliving industry snapshot</span>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-cell">
+      <div class="stat-num">$17B</div>
+      <div class="stat-label">Global coliving market size 2026, growing ~16% annually</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">35M+</div>
+      <div class="stat-label">Digital nomads worldwide — tripled since 2019</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">€800–1,500</div>
+      <div class="stat-label">Typical all-in monthly rate across Europe &amp; Asia</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">1 month</div>
+      <div class="stat-label">Sweet spot stay length in rural coliving; builds community without stagnation</div>
+    </div>
+  </div>
+
+  <!-- EUROPE RURAL -->
+  <div class="section-head">
+    <h2>Closest Peers — Rural Europe</h2>
+    <span>Spain · Germany · Most directly comparable</span>
+  </div>
+  <div class="region-label region-europe">Europe</div>
+
+  <div class="cards-grid" style="margin-bottom:1.5px">
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://anceu.com" target="_blank" rel="noopener">Anceu Coliving</a></div>
+            <div class="card-location">Anceu village, Pontevedra, Galicia, Spain</div>
+          </div>
+          <div class="card-flag">🇪🇸</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Founded 2020</span>
+        <span class="tag">Village revival</span>
+        <span class="tag">1 Gbps fibre</span>
+        <span class="tag">Private ensuite</span>
+      </div>
+      <div class="card-price">€882<span class="card-price-label">/month</span></div>
+      <div class="card-desc">Most direct European peer. Set in a working Galician village 30 min from Pontevedra. Residents join village projects via the "Rural Hackers" association — murals, local festivals, community farming. Strong editorial press. Coworking inside the coliving building. 1 Gbps symmetric fibre.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Village integration is the differentiator, not the rooms. The Rural Hackers programme gets them into media and builds word-of-mouth. Giving nomads a reason to participate locally creates loyalty and reduces churn.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.sende.co" target="_blank" rel="noopener">Sende</a></div>
+            <div class="card-location">Senderiz hamlet, Galicia, Spain</div>
+          </div>
+          <div class="card-flag">🇪🇸</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Founded 2015</span>
+        <span class="tag">First rural EU coliving</span>
+        <span class="tag">Seasonal</span>
+        <span class="tag">3,500+ alumni</span>
+      </div>
+      <div class="card-price">€960<span class="card-price-label">/month private</span></div>
+      <div class="card-desc">The original. First rural coliving in Europe, opened 2015 in a small Galician hamlet near the Portuguese border. Runs seasonally (June + Aug–Oct). Communal meals, farming, hiking. 3,500+ nomads over its lifetime. Strong alumni community that keeps coming back.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Seasonal operation creates scarcity and anticipation. Alumni community = free marketing. Communal meals are the single most effective community-building tool — cheap to run, high social return.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.rooral.co" target="_blank" rel="noopener">Rooral</a></div>
+            <div class="card-location">Benarrabá, Málaga, Andalusia, Spain</div>
+          </div>
+          <div class="card-flag">🇪🇸</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Nonprofit</span>
+        <span class="tag">2 wk–2 mo stays</span>
+        <span class="tag">350-person village</span>
+        <span class="tag">Euronews coverage</span>
+      </div>
+      <div class="card-price">—</div>
+      <div class="card-desc">Nonprofit "pueblo coliving" in a mountain village of 350 people. Nomads live in local houses, cowork in a municipal building with 1 Gbps fibre. Each resident spends ~$1,765/month in the local economy. 52 nomads from 19 countries in 2025. Got major international press on the "dying village" narrative.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>The "depopulation reversal" story is a media magnet. Euronews, BBC, etc. actively seek these narratives. Building a measurable local economic impact (€X spent locally per month) creates a compelling PR hook that costs nothing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-grid cols-2" style="margin-bottom:3.5rem">
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://coconat-space.com" target="_blank" rel="noopener">Coconat</a></div>
+            <div class="card-location">Bad Belzig, Brandenburg, Germany</div>
+          </div>
+          <div class="card-flag">🇩🇪</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">90 min from Berlin</span>
+        <span class="tag">1–2 week stays</span>
+        <span class="tag">Nature-first</span>
+        <span class="tag">Workation focus</span>
+      </div>
+      <div class="card-desc">Rural retreat 90 min from Berlin for burned-out remote workers. Shorter stays (1–2 weeks) rather than monthly. Hiking, swimming, fishing on-site. Positions itself as "workation" rather than full coliving — taps the corporate team offsite market in addition to individual nomads.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>The "team offsite" market is adjacent and high-value: a company blocks 8 rooms for a week at €1,500+/person. Worth building a corporate offering alongside individual stays. No kitchen conflict — groups don't mix.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.kalart.org/en" target="_blank" rel="noopener">Kalart</a></div>
+            <div class="card-location">Montseny Valley, Catalonia, Spain</div>
+          </div>
+          <div class="card-flag">🇪🇸</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">UNESCO Biosphere</span>
+        <span class="tag">Near Barcelona</span>
+        <span class="tag">Nature + community</span>
+      </div>
+      <div class="card-desc">Coliving and coworking in a UNESCO Biosphere Reserve near Barcelona. Positions on work-life balance and nature rather than price. Benefits from proximity to a major city (Barcelona day trips), which El Primitivo does not have — but compensates with more authentic setting and Camino identity.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>UNESCO / heritage designations are powerful shorthand in marketing copy. Asturias has multiple natural parks and the Camino Primitivo is UNESCO World Heritage — use it explicitly in all copy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDITERRANEAN / SURF -->
+  <div class="section-head">
+    <h2>Mediterranean &amp; North Africa</h2>
+    <span>Surf culture · Sea views · Established nomad circuits</span>
+  </div>
+  <div class="region-label region-med">Mediterranean · North Africa</div>
+
+  <div class="cards-grid cols-2" style="margin-bottom:3.5rem">
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.sundesk.es" target="_blank" rel="noopener">SunDesk</a></div>
+            <div class="card-location">Taghazout, Atlantic coast, Morocco</div>
+          </div>
+          <div class="card-flag">🇲🇦</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Surf + work</span>
+        <span class="tag">16 people max</span>
+        <span class="tag">Free daily breakfast</span>
+        <span class="tag">Sea views</span>
+      </div>
+      <div class="card-price">€650–900<span class="card-price-label">/month</span></div>
+      <div class="card-desc">Intimate two-venue setup in a Moroccan surf village, max 16 coworkers. Known for free daily breakfast as the community anchor — everyone starts the day together. Skill shares, movie nights, game evenings. Sea views from the workspace. Proof that a small, intimate setup (not a 100-room resort) is the winning formula.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Free daily breakfast is the single cheapest community investment available. It costs ~€5/person/day and forces social interaction at a natural time. Many coliving founders cite it as their most impactful decision. Replicate this.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://sun-and-co.com" target="_blank" rel="noopener">Sun &amp; Co</a></div>
+            <div class="card-location">Jávea (Xàbia), Costa Blanca, Spain</div>
+          </div>
+          <div class="card-flag">🇪🇸</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Founded 2016</span>
+        <span class="tag">Coliving pioneer</span>
+        <span class="tag">Mediterranean</span>
+        <span class="tag">Monthly programme</span>
+      </div>
+      <div class="card-price">€800–1,200<span class="card-price-label">/month</span></div>
+      <div class="card-desc">One of Europe's first dedicated digital nomad colivings. Mediterranean town, monthly curated programmes (surf trips, hikes, dinners). Built strong alumni network. Programmed stays — each month has a theme or focus — keep the community fresh even as individuals rotate through.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Monthly themes or programmes create a reason to book a specific month ("September is creative month") and generate recurring content and social proof. Low cost to implement, high perceived value.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASIA -->
+  <div class="section-head">
+    <h2>Asia — The Original Nomad Hubs</h2>
+    <span>Bali · Chiang Mai · Where the coliving format was born</span>
+  </div>
+  <div class="region-label region-asia">Asia Pacific</div>
+
+  <div class="cards-grid" style="margin-bottom:3.5rem">
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.outpost-club.com" target="_blank" rel="noopener">Outpost</a></div>
+            <div class="card-location">Ubud &amp; Canggu, Bali, Indonesia</div>
+          </div>
+          <div class="card-flag">🇮🇩</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">2–6 month stays</span>
+        <span class="tag">Coworking separate</span>
+        <span class="tag">3 Bali locations</span>
+        <span class="tag">Long-stay focus</span>
+      </div>
+      <div class="card-price">$500–900<span class="card-price-label">/month</span></div>
+      <div class="card-desc">Premium end of Bali coliving. Keeps coworking buildings physically separate from living spaces — a short walk that creates psychological separation between "work mode" and "home." Sweet spot stays of 2–6 months. Set near Ubud's cultural attractions, temples, yoga studios. Proof that "cultural richness" is as effective as "beach" as a backdrop.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Separating work and living spaces — even if only 100 metres apart — reduces friction and burnout. Nomads who "live at work" leave early. A distinct coworking space (even a designated café or room in the building) is worth designing deliberately.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://dojobali.org" target="_blank" rel="noopener">Dojo Bali</a></div>
+            <div class="card-location">Canggu, Bali, Indonesia <span style="color:var(--warning);font-size:0.7rem">(closed Dec 2022)</span></div>
+          </div>
+          <div class="card-flag">🇮🇩</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Coworking-first</span>
+        <span class="tag">Day passes available</span>
+        <span class="tag">Surf culture</span>
+        <span class="tag">Community events</span>
+      </div>
+      <div class="card-price">$300–600<span class="card-price-label">/month coworking</span></div>
+      <div class="card-desc">Started as a coworking space and added accommodation. Became a hub because it sold day passes — walk-in nomads built the community for free. Surf lifestyle, rooftop pool, weekly events. Cautionary note: Canggu traffic now severely impacts quality. Shows that location authenticity erodes when a place becomes too popular.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Day passes and walk-in coworking create organic community and marketing without cost. Pilgrims walking through Salas are a natural version of this — a café/coworking area that welcomes walk-ins from the Camino is a free community and revenue source.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.hubud.org" target="_blank" rel="noopener">Hubud</a></div>
+            <div class="card-location">Ubud, Bali, Indonesia <span style="color:var(--warning);font-size:0.7rem">(closed 2019)</span></div>
+          </div>
+          <div class="card-flag">🇮🇩</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Pioneer 2013–2019</span>
+        <span class="tag">Bamboo coworking</span>
+        <span class="tag">Culture-first</span>
+        <span class="tag">Cautionary tale</span>
+      </div>
+      <div class="card-desc">The global pioneer that put Bali on the digital nomad map. Iconic bamboo coworking structure in the rice fields. Closed in 2019. Lessons: its identity was inseparably tied to its physical building — when that building aged, so did the brand. It had no housing component and relied entirely on the community it built around daily coworking rituals.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Being first in a category creates enormous brand equity — but physical spaces need reinvestment. The community outlived the building (Hubud alumni still meet globally). Your brand must be portable enough to survive beyond the physical space: invest in alumni network from day one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAUTIONARY TALE -->
+  <div class="section-head">
+    <h2>Cautionary Tale</h2>
+    <span>What happens when you scale before you have community</span>
+  </div>
+  <div class="region-label region-warn">Warning</div>
+
+  <div class="cards-grid cols-2" style="margin-bottom:3.5rem">
+    <div class="card card-warning">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.selina.com" target="_blank" rel="noopener">Selina</a></div>
+            <div class="card-location">100+ locations, 25 countries — went public 2022</div>
+          </div>
+          <div class="card-flag">🌍</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">IPO via SPAC 2022</span>
+        <span class="tag">–96% market cap 2024</span>
+        <span class="tag">Overexpansion</span>
+        <span class="tag">No shared kitchen</span>
+      </div>
+      <div class="card-desc">Raised $300M+, expanded to 100+ locations across LATAM, Europe, and Asia. Marketed heavily as "coliving for digital nomads." Market cap collapsed from peak to $3.28M by mid-2024 — a 96.78% wipeout. Root causes: quality inconsistency between locations, spending on marketing over community, properties not designed for long-term living (no kitchens), and treating coliving as a hotel product rather than a community product.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">The lesson for El Primitivo</div>
+        <p>Stay small and deep rather than wide and thin. 8 rooms done exceptionally well generates better economics, better reviews, and better word-of-mouth than 80 rooms done adequately. Community is the product — the rooms are just where you sleep.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-name">The Selina Checklist</div>
+          <div class="card-location">What not to do</div>
+        </div>
+      </div>
+      <br>
+      <div class="card-desc">
+        <table style="font-size:0.78rem;width:100%;border:none">
+          <tr style="border-bottom:1px solid var(--rule)">
+            <td style="padding:0.5rem 0;color:var(--warning)">✗</td>
+            <td style="padding:0.5rem 0.5rem">Market to "everyone" — no identity</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--rule)">
+            <td style="padding:0.5rem 0;color:var(--warning)">✗</td>
+            <td style="padding:0.5rem 0.5rem">Rooms without shared kitchen = not coliving</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--rule)">
+            <td style="padding:0.5rem 0;color:var(--warning)">✗</td>
+            <td style="padding:0.5rem 0.5rem">Variable quality destroys trust at scale</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--rule)">
+            <td style="padding:0.5rem 0;color:var(--warning)">✗</td>
+            <td style="padding:0.5rem 0.5rem">Raise VC money → pressure to expand too fast</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--rule)">
+            <td style="padding:0.5rem 0;color:var(--warning)">✗</td>
+            <td style="padding:0.5rem 0.5rem">Treat short-stay tourists same as nomads</td>
+          </tr>
+          <tr>
+            <td style="padding:0.5rem 0;color:#4CAF50">✓</td>
+            <td style="padding:0.5rem 0.5rem">One location, one identity, done exceptionally well</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div class="section-head">
+    <h2>Comparison Overview</h2>
+    <span>Key metrics across all players</span>
+  </div>
+
+  <div class="table-wrap" style="margin-bottom:3.5rem">
+    <table>
+      <thead>
+        <tr>
+          <th>Space</th>
+          <th>Location</th>
+          <th>Price/month</th>
+          <th>Stay length</th>
+          <th>Rooms</th>
+          <th>Fibre</th>
+          <th>Community</th>
+          <th>Village story</th>
+          <th>Heritage angle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row td-primitive">
+          <td>El Primitivo ★</td>
+          <td>Salas, Asturias</td>
+          <td>€950 (tbc)</td>
+          <td>1 month+</td>
+          <td>8</td>
+          <td><span class="dot dot-green"></span>Yes</td>
+          <td><span class="dot dot-yellow"></span>TBD</td>
+          <td><span class="dot dot-green"></span>Strong</td>
+          <td><span class="dot dot-green"></span>Camino Primitivo</td>
+        </tr>
+        <tr>
+          <td>Anceu</td>
+          <td>Galicia, ES</td>
+          <td>€882</td>
+          <td>1 month+</td>
+          <td>~12</td>
+          <td><span class="dot dot-green"></span>1 Gbps</td>
+          <td><span class="dot dot-green"></span>Rural Hackers</td>
+          <td><span class="dot dot-green"></span>Strong</td>
+          <td><span class="dot dot-grey"></span>None</td>
+        </tr>
+        <tr>
+          <td>Sende</td>
+          <td>Galicia, ES</td>
+          <td>€960</td>
+          <td>1 wk–1 mo</td>
+          <td>~8</td>
+          <td><span class="dot dot-green"></span>Yes</td>
+          <td><span class="dot dot-green"></span>Alumni network</td>
+          <td><span class="dot dot-green"></span>Strong</td>
+          <td><span class="dot dot-grey"></span>None</td>
+        </tr>
+        <tr>
+          <td>Rooral</td>
+          <td>Málaga, ES</td>
+          <td>Varies</td>
+          <td>2 wk–2 mo</td>
+          <td>Village</td>
+          <td><span class="dot dot-green"></span>1 Gbps</td>
+          <td><span class="dot dot-green"></span>Pueblo model</td>
+          <td><span class="dot dot-green"></span>Very strong</td>
+          <td><span class="dot dot-grey"></span>None</td>
+        </tr>
+        <tr>
+          <td>Coconat</td>
+          <td>Brandenburg, DE</td>
+          <td>€100–150/day</td>
+          <td>1–2 weeks</td>
+          <td>~30</td>
+          <td><span class="dot dot-green"></span>Yes</td>
+          <td><span class="dot dot-yellow"></span>Events-based</td>
+          <td><span class="dot dot-grey"></span>Weak</td>
+          <td><span class="dot dot-grey"></span>None</td>
+        </tr>
+        <tr>
+          <td>SunDesk</td>
+          <td>Taghazout, MA</td>
+          <td>€650–900</td>
+          <td>1 month</td>
+          <td>16 max</td>
+          <td><span class="dot dot-green"></span>Yes</td>
+          <td><span class="dot dot-green"></span>Breakfast ritual</td>
+          <td><span class="dot dot-yellow"></span>Moderate</td>
+          <td><span class="dot dot-grey"></span>None</td>
+        </tr>
+        <tr>
+          <td>Outpost Bali</td>
+          <td>Ubud, ID</td>
+          <td>$500–900</td>
+          <td>2–6 months</td>
+          <td>~20</td>
+          <td><span class="dot dot-green"></span>Yes</td>
+          <td><span class="dot dot-green"></span>Curated events</td>
+          <td><span class="dot dot-grey"></span>None</td>
+          <td><span class="dot dot-green"></span>Temples/culture</td>
+        </tr>
+        <tr>
+          <td>Selina</td>
+          <td>100+ locations</td>
+          <td>€50–200/night</td>
+          <td>Days–weeks</td>
+          <td>50–200</td>
+          <td><span class="dot dot-yellow"></span>Variable</td>
+          <td><span class="dot dot-red"></span>Failed</td>
+          <td><span class="dot dot-red"></span>None</td>
+          <td><span class="dot dot-grey"></span>None</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- KEY LESSONS -->
+  <div class="section-head">
+    <h2>Key Lessons from the Field</h2>
+    <span>What the best projects have in common</span>
+  </div>
+
+  <div class="lessons-grid">
+    <div class="lesson-card">
+      <div class="lesson-num">01</div>
+      <div class="lesson-title">Community is the product. Rooms are just where you sleep.</div>
+      <p class="lesson-body">Every successful rural coliving — Anceu, Sende, SunDesk, Outpost — has a daily ritual that forces interaction: communal meals, a shared breakfast, a morning coworking session. Without this, you are running an apartment rental. With it, you are running a community that happens to have beds.</p>
+      <p class="lesson-source">Source: Selina failure analysis · SunDesk model · Sende alumni data</p>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">02</div>
+      <div class="lesson-title">The "dying village" story is a free media machine.</div>
+      <p class="lesson-body">Rooral was featured in Euronews, BBC, and 15+ publications — unpaid — purely because they quantified their local economic impact (€1,765/nomad/month spent locally). The "we are reversing rural depopulation" angle is exactly what European media is looking for in 2026. Salas fits this narrative perfectly. Document the numbers from month one.</p>
+      <p class="lesson-source">Source: Euronews "Half our villages are dying" · Rooral press coverage</p>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">03</div>
+      <div class="lesson-title">Stay length sweet spot: 1 month minimum.</div>
+      <p class="lesson-body">Shorter stays (1–2 weeks, Coconat model) generate higher per-night revenue but create a constant churn of strangers who never form community. The 1-month minimum is where nomads actually relax, integrate, and recommend you to others. It also makes operations simpler: fewer check-ins, more predictable revenue.</p>
+      <p class="lesson-source">Source: Genki coliving guide 2026 · Outpost model analysis</p>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">04</div>
+      <div class="lesson-title">Small is a feature, not a limitation.</div>
+      <p class="lesson-body">8–16 people is the magic number across the best-reviewed colivings globally. Everyone knows everyone within 48 hours. Decisions happen fast. The founder is present. Quality is consistent. Nomads specifically choose small colivings to avoid the anonymous hotel feeling. Selina's 50–200 room properties failed partly because of this. Never expand beyond what you can personally quality-control.</p>
+      <p class="lesson-source">Source: SunDesk (16 max) · Sende (~8) · Selina collapse analysis</p>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">05</div>
+      <div class="lesson-title">Day passes and walk-in coworking build community for free.</div>
+      <p class="lesson-body">Dojo Bali grew its resident community by selling daily coworking passes first. Walk-in nomads became residents; residents became ambassadors. The Camino Primitivo provides El Primitivo with a natural version of this: pilgrims and nomad day-trippers walking through Salas. A café/coworking space open to walk-ins creates organic social proof and revenue from day one.</p>
+      <p class="lesson-source">Source: Dojo Bali model · Camino Primitivo foot traffic data</p>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">06</div>
+      <div class="lesson-title">Heritage and UNESCO status are marketing shorthand.</div>
+      <p class="lesson-body">Kalart leads with "UNESCO Biosphere Reserve." Outpost leads with "Balinese temples and sacred forests." These labels instantly communicate authenticity and scarcity to a nomad who is comparing 15 colivings at once. The Camino Primitivo is a UNESCO World Heritage route — this needs to be the first line in every listing, not buried in an About section.</p>
+      <p class="lesson-source">Source: Kalart positioning · Outpost marketing analysis</p>
+    </div>
+  </div>
+
+  <!-- POSITIONING -->
+  <div class="section-head" style="margin-top:3.5rem">
+    <h2>El Primitivo — Positioning</h2>
+    <span>Where we sit in the landscape</span>
+  </div>
+
+  <div class="position-grid">
+    <div class="pos-card pos-green">
+      <div class="pos-title">Unique advantages — no competitor has all of these</div>
+      <ul class="pos-list">
+        <li>Camino Primitivo — the oldest pilgrimage route in the world runs through the plaza. No other coliving has this.</li>
+        <li>Medieval castle as literal backdrop. Unmatched visual brand at zero cost.</li>
+        <li>Asturias is undiscovered — Galicia and Andalusia are saturated; Asturias is not.</li>
+        <li>8 clustered rooms near the castle — right size for community, right location for identity.</li>
+        <li>Year-round operation potential (mild Atlantic climate vs. seasonal competitors).</li>
+        <li>Jakobsweg / Camino audience spans Germany, Austria, Switzerland — natural marketing channel.</li>
+      </ul>
+    </div>
+    <div class="pos-card">
+      <div class="pos-title">Gaps to close before launch</div>
+      <ul class="pos-list">
+        <li>Define the daily community ritual — communal breakfast or dinner must be built into the offer from day one.</li>
+        <li>Identify the common space — which of the 8 units or an adjacent space becomes the shared hub?</li>
+        <li>Get listed on Nomad List, Genki Guide, and Coliving.com before first guest arrives.</li>
+        <li>Build the "depopulation reversal" narrative — track local spend from month one for media use.</li>
+        <li>Consider a walk-in coworking offering for Camino pilgrims passing through (€10–15/day).</li>
+        <li>Confirm pricing with comparable research: €950 is market rate, consider €1,100 for founding-member framing.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PART 2 — THE BROADER MOVEMENT
+     ══════════════════════════════════════════════════════ -->
+
+<div class="section-bridge">
+  <div class="section-bridge-inner">
+    <div class="section-bridge-label">Part 2 — The Broader Movement</div>
+    <h2>Beyond Coliving: Intentional Communities at Every Scale</h2>
+    <p>The same underlying hunger — meaningful place, chosen community, escape from the default city — now manifests at scales from pop-up city experiments (200 people, 2 months) all the way to billion-dollar new city projects. El Primitivo sits at the accessible, authentic European end of this spectrum. Understanding the full landscape reveals both the demand and the positioning opportunity.</p>
+  </div>
+</div>
+
+<!-- GLOBAL COLIVING NETWORKS -->
+<div class="wrap">
+  <div class="section-head">
+    <h2>Global Coliving Networks</h2>
+    <span>Platform plays — network effects, modular housing, membership</span>
+  </div>
+  <div class="region-label region-global">Global Platform</div>
+
+  <div class="cards-grid cols-2" style="margin-bottom:3.5rem">
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://nomad.homes" target="_blank" rel="noopener">NOMAD Nation</a></div>
+            <div class="card-location">12 cities — Raleigh, Budapest, Prague, Lisbon + more</div>
+          </div>
+          <div class="card-flag">🌐</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">12 locations</span>
+        <span class="tag">Modular housing</span>
+        <span class="tag">App + membership</span>
+        <span class="tag">Co-ownership model</span>
+      </div>
+      <div class="card-price">$25–60<span class="card-price-label">/month membership</span></div>
+      <div class="card-desc">Global co-living ecosystem of modular, high-quality housing for digital nomads. Members pay $25–60/month for the app and "circuit trips" across locations. Units range from 130 sq ft micro-rooms (ATOM) to 2,150 sq ft full apartments. Revenue from memberships, property floor plan sales ($299–399), and investment in development. Target: remote workers, content creators, serial entrepreneurs aged 25–50.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>The platform/network play is their moat — switching locations within NOMAD is easy. El Primitivo cannot match network breadth. The counter-positioning: NOMAD is optimized for movement; El Primitivo is optimized for depth. Market to nomads who are tired of bouncing between identical modular units and want to actually be somewhere.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-name"><a href="https://www.praxisnation.com" target="_blank" rel="noopener">Praxis Nation</a></div>
+          <div class="card-location">+Colonia, Uruguay — first residents mid-2027</div>
+        </div>
+        <div class="card-flag">🇺🇾</div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">$1B investment planned</span>
+        <span class="tag">Thiel + Altman backed</span>
+        <span class="tag">AI-shaped city</span>
+        <span class="tag">New city from scratch</span>
+      </div>
+      <div class="card-price">TBD</div>
+      <div class="card-desc">Announced September 2026: Praxis will build its first city-scale development at +Colonia, a waterfront district adjoining the historic city of Colonia del Sacramento on the Río de la Plata. $1B mobilized over three years. Backed by Peter Thiel, Sam Altman. Target: entrepreneurs, artists, researchers building in an AI-shaped future. First residents expected mid-2027. Previously explored Greenland, Kyiv, and Athens before choosing Uruguay.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Praxis has raised $500M+ in commitments from people who want intentional community — but they won't have residents until 2027 at the earliest, and buy-in will not be accessible to most nomads. This is the demand signal: the market for intentional physical community is proven, enormous, and undersupplied at the affordable end. El Primitivo can open in 2026.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIAL ECONOMIC ZONES -->
+  <div class="section-head">
+    <h2>Alternative Places — Special Economic Zones</h2>
+    <span>Governance experiments · Custom law · New economic models</span>
+  </div>
+  <div class="region-label region-places">Special Zones</div>
+
+  <div class="cards-grid cols-2" style="margin-bottom:3.5rem">
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.prospera.co/en" target="_blank" rel="noopener">Próspera</a></div>
+            <div class="card-location">Roatán Island, Honduras — ZEDE Special Economic Zone</div>
+          </div>
+          <div class="card-flag">🇭🇳</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">1,700+ residents</span>
+        <span class="tag">40+ nationalities</span>
+        <span class="tag">1% effective tax</span>
+        <span class="tag">200+ businesses formed</span>
+      </div>
+      <div class="card-price">1% eff. tax<span class="card-price-label"> vs. standard rates</span></div>
+      <div class="card-desc">A startup governance zone on a Honduran island, 20 min from the international airport. Custom legal code, 1% effective income tax (10% applied to 10% of gross income), independent dispute resolution, digital e-governance. 1,700+ residents from 40+ countries, $100M+ invested, 950 active jobs. Legal stability guarantee: taxes cannot change without business consent. Vitalia pop-up city runs inside Próspera annually.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>1,700 people relocated to Honduras for governance reasons — proving that community-building is more powerful than geography. Próspera's residents are exactly the audience that would visit El Primitivo for a European base: entrepreneurial, internationally mobile, seeking intentional communities. Consider activating in Próspera/Vitalia circles as an early-adopter marketing channel.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.neom.com/en-us" target="_blank" rel="noopener">NEOM</a></div>
+            <div class="card-location">Tabuk Province, northwest Saudi Arabia</div>
+          </div>
+          <div class="card-flag">🇸🇦</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">$500B+ investment</span>
+        <span class="tag">26,500 km²</span>
+        <span class="tag">Government-backed</span>
+        <span class="tag">The Line + Oxagon</span>
+      </div>
+      <div class="card-price">$500B+<span class="card-price-label"> development cost</span></div>
+      <div class="card-desc">Saudi Arabia's $500B+ new city project: 26,500 km², 468 km of coastline, 41 islands. Multiple districts: The Line (linear city), Oxagon (industrial port), Sindalah (luxury island). 1.5 GW AI data center under construction. Active 24/7 port operations. 4.7M plants planted. 100+ nationalities on-site. Massive scale, top-down government project. Aimed at attracting global talent and industry.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>NEOM is the ultimate top-down "build it and they will come" experiment. The lesson for El Primitivo is inverse: authenticity and bottom-up community cannot be manufactured at scale. The same nomads who are skeptical of NEOM's engineered environment are the ones who will seek out Salas. "Real" is the product that $500B cannot buy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POP-UP CITIES -->
+  <div class="section-head">
+    <h2>Pop-Up Cities</h2>
+    <span>Temporary intentional communities · Proving demand · Spawning ecosystems</span>
+  </div>
+  <div class="region-label region-popup">Pop-Up Cities</div>
+
+  <div class="cards-grid cols-2" style="margin-bottom:3.5rem">
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.zuzalu.city" target="_blank" rel="noopener">Zuzalu</a></div>
+            <div class="card-location">Lustica Bay, Montenegro — March–May 2023</div>
+          </div>
+          <div class="card-flag">🇲🇪</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Vitalik Buterin</span>
+        <span class="tag">~200 residents</span>
+        <span class="tag">2 months</span>
+        <span class="tag">Spawned 20+ events</span>
+      </div>
+      <div class="card-price">Invite-only<span class="card-price-label"> first edition</span></div>
+      <div class="card-desc">Ethereum co-founder Vitalik Buterin convened ~200 residents at Lustica Bay resort for 2 months to test whether a temporary physical community could develop novel governance, identity, and coordination. Audiences: longevity researchers, cryptographers, AI researchers, network state adherents. Legacy: spawned 20+ derivative "pop-up villages" globally (Edge City, ZuConnect, etc.), plus infrastructure (Zupass), products (Daimo), and a movement.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Zuzalu's most lasting output was not the event but the community and tools it generated. The Zuzalu alumni network is actively seeking permanent or semi-permanent bases in Europe. Many attendees are exactly El Primitivo's ideal guest: mobile, intellectually engaged, willing to pay for curated community. Consider targeting Zuzalu/Edge City channels early.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://vitalia.city" target="_blank" rel="noopener">Vitalia</a></div>
+            <div class="card-location">Inside Próspera, Roatán, Honduras — Jan–Mar annually</div>
+          </div>
+          <div class="card-flag">🇭🇳</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">500–1,000 people</span>
+        <span class="tag">2 months/year</span>
+        <span class="tag">Longevity + biotech</span>
+        <span class="tag">Crypto-augmented SEZ</span>
+      </div>
+      <div class="card-price">Varies<span class="card-price-label"> tiered by stay length</span></div>
+      <div class="card-desc">Annual pop-up city inside Próspera ZEDE, focused on longevity science and biotech acceleration. First edition brought 500+ residents; 2025 edition expanded to 1,000 capacity. Self-described as "experimental biotech startup hub, crypto-augmented SEZ, and nuclear reactor of liberal governance, big brains, and disruptive ideas." Runs January to March each year. Seed for a planned permanent longevity district.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Vitalia attendees spend January–March in Honduras, then need somewhere to be for the rest of the year. Europe in spring/summer is the natural follow-on. The Vitalia → El Primitivo pipeline is a real marketing channel worth activating: same crowd (entrepreneurial, health-conscious, mobile, anti-default-world), different season and geography.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NETWORK STATES / WEB3 EXPERIMENTS -->
+  <div class="section-head">
+    <h2>Network States &amp; New Nation Experiments</h2>
+    <span>Web3-native · Digital-first identity · Varying stages of physical reality</span>
+  </div>
+  <div class="region-label region-netstate">Network States</div>
+
+  <div class="cards-grid" style="margin-bottom:1.5px">
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://www.afropolitan.io" target="_blank" rel="noopener">Afropolitan</a></div>
+            <div class="card-location">Digital nation for African diaspora — global</div>
+          </div>
+          <div class="card-flag">🌍</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">$2.1M funding</span>
+        <span class="tag">50 founding members</span>
+        <span class="tag">Web3-native</span>
+        <span class="tag">Art · finance · tech</span>
+      </div>
+      <div class="card-desc">Building a "digital nation" for Africans and their diaspora. Network spans art, finance, tech, health, energy, sports, and media. Operates via NFT collections, podcasts, and community membership. 50 founding members across TechCrunch/Decrypt-covered sectors. $2.1M raised. Aspiration-driven: "we care less about what you've done and more about who you aspire to become." Active presence but no physical infrastructure yet.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Identity-first community building — the brand and narrative precede the physical space. Afropolitan has community and funding before it has a building. El Primitivo can build its community (waitlist, newsletter, Nomad List profile) before full capacity is live — turning the first guests into founding members who shaped the place.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://buildcities.com" target="_blank" rel="noopener">Build Cities</a></div>
+            <div class="card-location">Build Nevada + expanding US cities</div>
+          </div>
+          <div class="card-flag">🇺🇸</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Civic OS</span>
+        <span class="tag">AI-powered</span>
+        <span class="tag">Founder + community focus</span>
+        <span class="tag">Active July 2026</span>
+      </div>
+      <div class="card-desc">A "Civic Operating System" that connects founders, operators, and community members to local economic opportunities. Six functions: discover projects, share work, build networks via events, access education, find physical hubs, use AI tools for connections. Active in Nevada with state-level implementation. Bridges digital connectivity with local community engagement — addresses the gap between online networks and physical place.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Build Cities is solving the "connected but disconnected" problem at the city scale. El Primitivo solves it at the intimate 8-person scale. The lesson: document and systematize the community connections El Primitivo creates — local vendors, shared projects, skill exchanges — and use that data as a differentiator ("our residents spent €X in Salas last month").</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="card-header">
+          <div>
+            <div class="card-name"><a href="https://holismo.org" target="_blank" rel="noopener">Holismo</a></div>
+            <div class="card-location">Decentralized — Idena network, no HQ</div>
+          </div>
+          <div class="card-flag">🌐</div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Phase 1 / pre-launch</span>
+        <span class="tag">Open-source</span>
+        <span class="tag">Decentralized democracy</span>
+        <span class="tag">NFT participation</span>
+      </div>
+      <div class="card-desc">An open-source platform reimagining democracy for the digital age via the Idena network. Citizens propose and vote on laws transparently. Four pillars: Free Speech, Transparency, Efficiency, Inclusivity. Three roles: Parliament Members, Operators, Guardians. No pricing — participation-based. Full webapp "coming soon." Currently in Phase 1 with community discussions on Discord. No physical component yet.</div>
+      <div class="card-lesson">
+        <div class="card-lesson-label">What to learn</div>
+        <p>Governance experiments like Holismo attract the same philosophically engaged audience as coliving communities. These are people who think seriously about how groups make decisions together. El Primitivo's internal governance — how residents share space, resolve conflict, make collective decisions — is worth designing deliberately rather than leaving to chance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT-STAGE / SMALLER EXPERIMENTS -->
+  <div class="section-head" style="margin-top:3.5rem">
+    <h2>Concept-Stage &amp; Early Experiments</h2>
+    <span>Smaller players · Web3 experiments · Early-stage or unclear status</span>
+  </div>
+
+  <div class="mini-grid">
+    <div class="mini-card">
+      <div class="mini-name"><a href="https://cityverse.life" target="_blank" rel="noopener">Cityverse</a></div>
+      <span class="mini-status status-active">Active — St. Petersburg, FL</span>
+      <p class="mini-desc">Rebuilds local civic attention: news, schedules, classifieds in one place. Free software for institutions; monetized through local advertising. Operational in St. Pete, expanding to more cities. Not a physical community — a digital civic layer. Closest analogy: a hyperlocal intranet.</p>
+    </div>
+    <div class="mini-card">
+      <div class="mini-name"><a href="https://nation3.org" target="_blank" rel="noopener">Nation3</a></div>
+      <span class="mini-status status-defunct">Status unclear / domain compromised</span>
+      <p class="mini-desc">Was a Web3-native governance project (DAO-based nation-state concept). Website now appears compromised/redirected to spam. The concept — crypto-governed digital nation — has since been absorbed into the broader network state conversation. No active presence found.</p>
+    </div>
+    <div class="mini-card">
+      <div class="mini-name"><a href="https://cloudlandai.com" target="_blank" rel="noopener">Cloudland AI</a></div>
+      <span class="mini-status status-early">Placeholder / unclear</span>
+      <p class="mini-desc">Domain appears to be a parked or placeholder site with minimal content ("AI resources and information" in Spanish). No clear concept, model, or active offering found. May be an early-stage project or domain holder. Not relevant to current competitive analysis.</p>
+    </div>
+    <div class="mini-card">
+      <div class="mini-name"><a href="https://www.akin.space" target="_blank" rel="noopener">Akin Space</a></div>
+      <span class="mini-status status-early">Could not load — connection refused</span>
+      <p class="mini-desc">Site was inaccessible at time of research. Based on name suggests a community or coliving concept. Requires follow-up. May be in early development or temporarily offline.</p>
+    </div>
+  </div>
+
+  <!-- SPECTRUM -->
+  <div class="section-head">
+    <h2>The Intentional Community Spectrum</h2>
+    <span>Where El Primitivo sits relative to the full landscape</span>
+  </div>
+
+</div>
+
+<div class="spectrum-band">
+  <div class="spectrum-inner">
+    <div class="spectrum-label-top">Scale of commitment · Community size · Accessibility</div>
+    <div class="spectrum-track">
+      <div class="spectrum-step">
+        <div class="sp-name">Pop-Up City</div>
+        <div class="sp-sub">Zuzalu · Vitalia<br>2 months · 200–1,000 people · invite or ticket</div>
+      </div>
+      <div class="spectrum-step hl">
+        <div class="sp-name">El Primitivo ★</div>
+        <div class="sp-sub">Salas, Asturias<br>1–3 months · 8 people · €950/mo all-in</div>
+      </div>
+      <div class="spectrum-step">
+        <div class="sp-name">Rural Coliving</div>
+        <div class="sp-sub">Anceu · Sende · Rooral<br>1 month · 8–16 people · €882–960</div>
+      </div>
+      <div class="spectrum-step">
+        <div class="sp-name">Global Network</div>
+        <div class="sp-sub">NOMAD.homes<br>12 cities · membership model · moveable</div>
+      </div>
+      <div class="spectrum-step">
+        <div class="sp-name">Special Zone</div>
+        <div class="sp-sub">Próspera<br>Permanent · 1,700 residents · custom governance</div>
+      </div>
+      <div class="spectrum-step">
+        <div class="sp-name">New City</div>
+        <div class="sp-sub">Praxis · NEOM<br>Permanent · thousands+ · $1B–$500B</div>
+      </div>
+    </div>
+    <div class="spectrum-axis">
+      <span>← More temporary · More affordable · More accessible</span>
+      <span>More permanent · More capital-intensive · Larger scale →</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="section-head" style="margin-top:0;padding-top:3.5rem">
+    <h2>Strategic Synthesis</h2>
+    <span>What the full landscape means for El Primitivo</span>
+  </div>
+
+  <div class="lessons-grid" style="margin-bottom:0">
+    <div class="lesson-card">
+      <div class="lesson-num">A</div>
+      <div class="lesson-title">The demand is proven at every scale — the affordable European end is wide open.</div>
+      <p class="lesson-body">Praxis raised $500M in commitments. Próspera attracted 1,700 residents to Honduras. Zuzalu spawned 20+ derivative communities. The demand for intentional physical community is enormous and proven. The affordable, authentic, accessible European version of this — a 1-month stay in a medieval Asturian village — does not yet exist at the quality level El Primitivo could deliver.</p>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">B</div>
+      <div class="lesson-title">Pop-up city alumni are your first target audience.</div>
+      <p class="lesson-body">Zuzalu and Vitalia attendees spend 2 months in intensive community and then need to be somewhere for the rest of the year. They are already comfortable with intentional communities, already know other nomads, and are already paying premium prices for curated experiences. Activate in Edge City, Zuzalu Telegram, and Vitalia channels before the first guest arrives.</p>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">C</div>
+      <div class="lesson-title">"Real" is the product $500B cannot manufacture.</div>
+      <p class="lesson-body">NEOM costs $500B and cannot produce a medieval castle, a 9th-century pilgrimage route, or a cider house that has been open since before the internet. The more capital floods into engineered intentional communities, the more valuable authentic ones become. Salas is not competing with NEOM — it is the opposite of NEOM. Use this explicitly in positioning.</p>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">D</div>
+      <div class="lesson-title">Build the community narrative from month one — it compounds.</div>
+      <p class="lesson-body">Afropolitan built its brand before its building. Zuzalu built 20 derivative communities from one 2-month event. Build Cities tracks local economic impact as a differentiator. The common thread: community narrative compounds over time and is impossible to retrofit. Document every resident, every local connection, every euro spent in Salas from the first week. That data becomes the story that gets El Primitivo into Euronews, Nomad List, and the Zuzalu newsletter.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="index.html">El Primitivo</a>
+  <span>Market research compiled November 2026 · Internal use only</span>
+  <span>
+    Sources: Genki Guide · Euronews · Anceu · Rooral · Mapmelon · Prospera.co · NEOM.com · Vitalia.city · Zuzalu.city · PraxisNation.com · Nomad.homes · Afropolitan.io · BuildCities.com · Forbes · Gitcoin · Wikipedia
+  </span>
+</footer>
+
+</body>
+</html>

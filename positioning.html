@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Primitivo — Positioning Brief</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='11' y='17' width='10' height='13' fill='%23243A24'/><rect x='9' y='13' width='14' height='5' fill='%23243A24'/><rect x='9' y='9' width='3' height='5' fill='%23243A24'/><rect x='14' y='9' width='4' height='5' fill='%23243A24'/><rect x='20' y='9' width='3' height='5' fill='%23243A24'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:    #243A24;
+      --green-lt: #2E4A2E;
+      --stone:    #C9A96E;
+      --cream:    #F5F0E8;
+      --white:    #FDFAF5;
+      --charcoal: #1C1A17;
+      --muted:    #7A7060;
+      --rule:     rgba(28,26,23,0.1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--green);
+      padding: 3.5rem 3rem 3rem;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .header-eyebrow {
+      font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 0.6rem; font-weight: 600;
+    }
+    header h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 300;
+      color: white; line-height: 1.15;
+    }
+    .header-meta {
+      font-size: 0.7rem; color: rgba(255,255,255,0.4);
+      text-align: right; line-height: 1.9;
+    }
+
+    /* ── WRAP ── */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 3.5rem 3rem; }
+
+    /* ── SECTION HEADS ── */
+    .sh {
+      display: flex; align-items: baseline; gap: 1.25rem;
+      border-bottom: 1px solid var(--rule); padding-bottom: 0.65rem;
+      margin-bottom: 2rem;
+    }
+    .sh h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem; font-weight: 400;
+    }
+    .sh span {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── CORE IDEA BAND ── */
+    .core-band { background: var(--charcoal); padding: 4rem 3rem; }
+    .core-inner { max-width: 1100px; margin: 0 auto; }
+    .core-label {
+      font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 1.5rem; font-weight: 600;
+    }
+    .core-idea {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 300;
+      color: white; line-height: 1.15; margin-bottom: 2rem;
+    }
+    .core-idea em { color: var(--stone); font-style: italic; }
+    .core-explain {
+      font-size: 0.9rem; line-height: 1.9; color: rgba(255,255,255,0.65);
+      max-width: 760px; border-left: 2px solid var(--stone); padding-left: 1.5rem;
+    }
+
+    /* ── POSITIONING STATEMENT ── */
+    .ps-box {
+      background: var(--white); border: 1px solid var(--rule);
+      padding: 2.5rem; margin-bottom: 3.5rem;
+    }
+    .ps-label {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 1rem; font-weight: 600;
+    }
+    .ps-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 300;
+      line-height: 1.65; color: var(--charcoal);
+    }
+
+    /* ── THREE-WORD BRIEF ── */
+    .three-words {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .word-cell { background: var(--white); padding: 2rem 1.75rem; }
+    .word-num {
+      font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 0.5rem; font-weight: 600;
+    }
+    .word-word {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.25rem; font-weight: 300; color: var(--green); line-height: 1; margin-bottom: 0.6rem;
+    }
+    .word-desc { font-size: 0.8rem; line-height: 1.7; color: var(--muted); }
+
+    /* ── GUEST PROFILES ── */
+    .profiles {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .profile { background: var(--white); padding: 1.75rem; }
+    .profile-tier {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 0.6rem; font-weight: 600;
+    }
+    .profile-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.3rem; font-weight: 400; margin-bottom: 0.4rem;
+    }
+    .profile-line { font-size: 0.75rem; color: var(--muted); margin-bottom: 1.25rem; font-style: italic; }
+    .profile-attrs { list-style: none; }
+    .profile-attrs li {
+      font-size: 0.8rem; line-height: 1.6; padding: 0.3rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex; gap: 0.6rem;
+    }
+    .profile-attrs li:last-child { border-bottom: none; }
+    .profile-attrs li::before { content: '—'; color: var(--stone); flex-shrink: 0; }
+    .profile-discovery {
+      margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+    }
+    .discovery-label {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.4rem; font-weight: 600;
+    }
+    .discovery-text { font-size: 0.78rem; color: var(--charcoal); line-height: 1.6; }
+
+    /* ── ARE / ARE NOT ── */
+    .are-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .are-card { background: var(--white); padding: 2rem; }
+    .are-card.are-not { background: #FDF8F5; }
+    .are-title {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 1.25rem;
+    }
+    .are-card:first-child .are-title { color: var(--green); }
+    .are-card.are-not .are-title { color: var(--muted); }
+    .are-list { list-style: none; }
+    .are-list li {
+      font-size: 0.83rem; line-height: 1.6; padding: 0.5rem 0;
+      border-bottom: 1px solid var(--rule); display: flex; gap: 0.75rem;
+    }
+    .are-list li:last-child { border-bottom: none; }
+    .check { color: #4CAF50; flex-shrink: 0; }
+    .cross { color: #bbb; flex-shrink: 0; }
+
+    /* ── TAGLINES ── */
+    .taglines {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .tagline-card { background: var(--white); padding: 1.75rem; }
+    .tagline-card.recommended { background: var(--green); }
+    .tl-label {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.75rem; font-weight: 600;
+    }
+    .tagline-card.recommended .tl-label { color: var(--stone); }
+    .tl-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem; font-weight: 300; color: var(--charcoal);
+      line-height: 1.3; margin-bottom: 0.75rem;
+    }
+    .tagline-card.recommended .tl-text { color: white; font-size: 1.75rem; }
+    .tl-reason { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
+    .tagline-card.recommended .tl-reason { color: rgba(255,255,255,0.6); }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .price-cell { background: var(--white); padding: 1.75rem; }
+    .price-tier {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 0.5rem; font-weight: 600;
+    }
+    .price-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.5rem; font-weight: 300; color: var(--green); line-height: 1; margin-bottom: 0.4rem;
+    }
+    .price-name { font-size: 0.75rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.75rem; }
+    .price-includes { list-style: none; }
+    .price-includes li {
+      font-size: 0.78rem; color: var(--muted); line-height: 1.65;
+      padding: 0.2rem 0; display: flex; gap: 0.5rem;
+    }
+    .price-includes li::before { content: '·'; color: var(--stone); }
+    .price-note { font-size: 0.72rem; color: var(--muted); margin-top: 1rem; font-style: italic; }
+
+    /* ── CHANNELS ── */
+    .channels-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .channel-group { background: var(--white); padding: 1.75rem; }
+    .channel-label {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 1rem; font-weight: 600;
+    }
+    .channel-list { list-style: none; }
+    .channel-list li {
+      font-size: 0.82rem; line-height: 1.6; padding: 0.4rem 0;
+      border-bottom: 1px solid var(--rule); display: flex; gap: 0.75rem; align-items: flex-start;
+    }
+    .channel-list li:last-child { border-bottom: none; }
+    .channel-list li::before { content: '→'; color: var(--stone); flex-shrink: 0; margin-top: 0.1rem; }
+    .channel-list .ch-name { font-weight: 500; min-width: 120px; color: var(--charcoal); }
+    .channel-list .ch-note { color: var(--muted); }
+
+    /* ── MEDIA HOOK ── */
+    .media-band { background: var(--green); padding: 3.5rem 3rem; }
+    .media-inner { max-width: 1100px; margin: 0 auto; }
+    .media-label {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 1.25rem; font-weight: 600;
+    }
+    .media-hook {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(1.25rem, 2.5vw, 2rem); font-weight: 300; font-style: italic;
+      color: white; line-height: 1.55; margin-bottom: 1.5rem; max-width: 820px;
+    }
+    .media-targets {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem;
+    }
+    .media-target {
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08);
+      padding: 0.35rem 0.75rem; border-radius: 2px;
+    }
+    .media-note { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 700px; }
+
+    /* ── VOICE ── */
+    .voice-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-bottom: 3.5rem;
+    }
+    .voice-card { background: var(--white); padding: 1.75rem; }
+    .voice-label {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1rem; font-weight: 600;
+    }
+    .voice-ex {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem; font-style: italic; color: var(--green);
+      line-height: 1.55; margin-bottom: 0.5rem;
+    }
+    .voice-why { font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule); padding: 1.5rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem; font-size: 0.7rem; color: var(--muted);
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.95rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--charcoal); text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      header, .wrap { padding: 2.5rem 1.5rem; }
+      .core-band, .media-band { padding: 3rem 1.5rem; }
+      .three-words, .profiles, .pricing-grid { grid-template-columns: 1fr; }
+      .are-grid, .taglines, .channels-grid, .voice-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div>
+    <div class="header-eyebrow">El Primitivo · Salas, Asturias · Internal</div>
+    <h1>Positioning Brief</h1>
+  </div>
+  <div class="header-meta">
+    Version 1.0<br>
+    November 2026<br>
+    Confidential
+  </div>
+</header>
+
+<!-- CORE IDEA -->
+<div class="core-band">
+  <div class="core-inner">
+    <div class="core-label">The Core Idea</div>
+    <div class="core-idea">The <em>original</em> coliving.</div>
+    <p class="core-explain">The Camino Primitivo has been moving strangers through Salas since Alfonso II walked it in 814 AD. What we now call "coliving" — shared space, shared meals, temporary community with people you would never otherwise meet — the Camino invented it. El Primitivo does not reference that history. It continues it. No other coliving in the world can say that.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- POSITIONING STATEMENT -->
+  <div class="sh" style="margin-top:0;padding-top:0.5rem">
+    <h2>Positioning Statement</h2>
+    <span>The one paragraph</span>
+  </div>
+  <div class="ps-box">
+    <div class="ps-label">For remote workers in their second chapter of nomadism</div>
+    <p class="ps-text">El Primitivo is Europe's only coliving space on the original Camino de Santiago — eight private houses in a medieval Asturian village, where the 9th-century pilgrimage route runs through the plaza and the castle is the view from the window. For experienced nomads who are done optimising their setup and want somewhere that feels earned: a month of deep work, genuine quiet, and a small community that actually knows each other's names.</p>
+  </div>
+
+  <!-- THREE-WORD BRIEF -->
+  <div class="sh">
+    <h2>The Three-Word Brief</h2>
+    <span>Everything filters through these</span>
+  </div>
+  <div class="three-words">
+    <div class="word-cell">
+      <div class="word-num">01</div>
+      <div class="word-word">Original</div>
+      <p class="word-desc">1,200 years of welcoming wanderers. The Camino Primitivo, the castle, the village — none of this was built for nomads. It was here already. That authenticity cannot be manufactured and is the core of everything we say and show.</p>
+    </div>
+    <div class="word-cell">
+      <div class="word-num">02</div>
+      <div class="word-word">Intimate</div>
+      <p class="word-desc">Eight rooms. Everyone knows everyone within 48 hours. No lobby, no reception desk, no stranger you pass in a corridor. Small is not a constraint — it is the product. Never expand beyond what can be personally quality-controlled.</p>
+    </div>
+    <div class="word-cell">
+      <div class="word-num">03</div>
+      <div class="word-word">Real</div>
+      <p class="word-desc">One cider house. One castle. One river. One plaza where the Camino passes. Not optimised for content, not filtered for Instagram. The same town that existed before the internet, unchanged — which is exactly what $500B cannot buy.</p>
+    </div>
+  </div>
+
+  <!-- GUEST PROFILES -->
+  <div class="sh">
+    <h2>Guest Profiles</h2>
+    <span>Three audiences, in priority order</span>
+  </div>
+  <div class="profiles">
+    <div class="profile">
+      <div class="profile-tier">Primary — fill the rooms</div>
+      <div class="profile-name">The Second-Chapter Nomad</div>
+      <div class="profile-line">"I've done Bali. I've done Lisbon. I want somewhere that feels earned."</div>
+      <ul class="profile-attrs">
+        <li>Age 30–42, remote income €4,000–15,000+/month</li>
+        <li>2–5 years nomadic experience</li>
+        <li>Has lived: Bali, Lisbon, Tbilisi, Buenos Aires, or similar</li>
+        <li>Tired of optimised nomad infrastructure</li>
+        <li>Wants depth over movement — stays 1–3 months</li>
+        <li>Values: authenticity, real community, natural beauty, meaningful work</li>
+        <li>Would not describe themselves as an "Instagram nomad"</li>
+      </ul>
+      <div class="profile-discovery">
+        <div class="discovery-label">How they find us</div>
+        <div class="discovery-text">Nomad List, word of mouth from other experienced nomads, Genki Guide, Coliving.com. Direct search when they've heard the name.</div>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="profile-tier">Secondary — highest value guest</div>
+      <div class="profile-name">The Intentional Community Seeker</div>
+      <div class="profile-line">"I go to Vitalia in January. I need somewhere in Europe for the summer."</div>
+      <ul class="profile-attrs">
+        <li>Age 28–45, crypto/AI/tech/creative background</li>
+        <li>Attended Zuzalu, Vitalia, Edge City, or similar</li>
+        <li>Already sold on intentional community — no convincing needed</li>
+        <li>Looking for European base April–October</li>
+        <li>Values: intellectual peers, meaningful place, longevity/health</li>
+        <li>Higher willingness to pay; becomes an ambassador</li>
+        <li>Brings their network — one guest refers three more</li>
+      </ul>
+      <div class="profile-discovery">
+        <div class="discovery-label">How they find us</div>
+        <div class="discovery-text">Zuzalu Telegram, Edge City newsletter, Vitalia channels, Twitter/X crypto circles. Requires proactive outreach — they don't search "coliving Spain."</div>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="profile-tier">Tertiary — Camino channel</div>
+      <div class="profile-name">The Pilgrim Who Came Back</div>
+      <div class="profile-line">"I walked the Camino three years ago. I've wanted to return ever since."</div>
+      <ul class="profile-attrs">
+        <li>Did the Camino (any route) as a pilgrim</li>
+        <li>Now works remotely — location flexible</li>
+        <li>Deep emotional connection to the experience and the place</li>
+        <li>Wants the Camino rhythm without the daily walking</li>
+        <li>Values: Asturian culture, the community of strangers, slow pace</li>
+        <li>German-speaking market especially strong (Jakobsweg)</li>
+      </ul>
+      <div class="profile-discovery">
+        <div class="discovery-label">How they find us</div>
+        <div class="discovery-text">Jakobsweg Facebook groups (German, massive), Camino forums (forums.caminodesantiago.me), pilgrim apps and networks.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARE / ARE NOT -->
+  <div class="sh">
+    <h2>What We Are — What We Are Not</h2>
+    <span>Brand guardrails</span>
+  </div>
+  <div class="are-grid">
+    <div class="are-card">
+      <div class="are-title">We are</div>
+      <ul class="are-list">
+        <li><span class="check">✓</span> 8 private houses — intimate, everyone knows everyone</li>
+        <li><span class="check">✓</span> Monthly minimum stays (no nightly rates)</li>
+        <li><span class="check">✓</span> A daily communal anchor — shared breakfast or dinner</li>
+        <li><span class="check">✓</span> Fast fibre throughout; dedicated desk in every room</li>
+        <li><span class="check">✓</span> Part of Salas village life — the Camino passes our door</li>
+        <li><span class="check">✓</span> Year-round (not seasonal like most rural competitors)</li>
+        <li><span class="check">✓</span> All-in pricing — no surprise extras</li>
+        <li><span class="check">✓</span> A place that existed and mattered long before we arrived</li>
+      </ul>
+    </div>
+    <div class="are-card are-not">
+      <div class="are-title">We are not</div>
+      <ul class="are-list">
+        <li><span class="cross">✗</span> A hostel — no dorms, no nightly rates, no transient flow</li>
+        <li><span class="cross">✗</span> A hotel — no reception, no room service, no anonymity</li>
+        <li><span class="cross">✗</span> A startup hub or branded coworking space</li>
+        <li><span class="cross">✗</span> An Instagram-optimised location (we don't perform authenticity)</li>
+        <li><span class="cross">✗</span> A party destination or digital nomad "scene"</li>
+        <li><span class="cross">✗</span> NEOM: engineered, optimised, manufactured community</li>
+        <li><span class="cross">✗</span> Selina: scale over substance, marketing over people</li>
+        <li><span class="cross">✗</span> A place for someone on their first month as a nomad</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TAGLINES -->
+  <div class="sh">
+    <h2>Tagline</h2>
+    <span>Recommended + alternatives</span>
+  </div>
+  <div class="taglines">
+    <div class="tagline-card recommended">
+      <div class="tl-label">Recommended — use everywhere</div>
+      <div class="tl-text">Work from the original way.</div>
+      <p class="tl-reason">Active (work from). References the Camino (the Way). Layers the brand name (El Primitivo = the original). Works in English and translates cleanly into German, Spanish, French. Short enough for a URL slug.</p>
+    </div>
+    <div class="tagline-card">
+      <div class="tl-label">Alternative — for media and long-form</div>
+      <div class="tl-text">The first coliving.<br>Continued.</div>
+      <p class="tl-reason">More conceptual, makes the historical claim directly. Use in press kit intros, long-form copy, the Nomad List description. Too long for a nav bar but powerful in context.</p>
+    </div>
+    <div class="tagline-card">
+      <div class="tl-label">Alternative — for the Camino audience</div>
+      <div class="tl-text">Some places have been welcoming wanderers for 1,200 years.</div>
+      <p class="tl-reason">For Jakobsweg groups, Camino forums, pilgrim channels. Speaks directly to the emotional memory of the Camino. Too long as a tagline but works as an opening sentence in emails and social posts.</p>
+    </div>
+    <div class="tagline-card">
+      <div class="tl-label">Alternative — for the pop-up city audience</div>
+      <div class="tl-text">Before there were digital nomads, there was the Camino.</div>
+      <p class="tl-reason">For Zuzalu/Vitalia channels, tech-adjacent audiences who think about intentional community conceptually. Bridges their frame (network states, pop-up cities) with our identity (original pilgrimage route).</p>
+    </div>
+  </div>
+
+  <!-- VOICE -->
+  <div class="sh">
+    <h2>Voice &amp; Tone</h2>
+    <span>How we write — two examples</span>
+  </div>
+  <div class="voice-grid">
+    <div class="voice-card">
+      <div class="voice-label">Write like this</div>
+      <p class="voice-ex">"The Camino Primitivo passes through the plaza. The castle is two minutes' walk. The mountains begin at the edge of town. You have fast internet and a desk."</p>
+      <p class="voice-why">Declarative. No adjectives that don't earn their place. No "vibrant community" or "inspiring surroundings." Let the facts do the work. Trust the reader to understand what it means without being told how to feel about it.</p>
+    </div>
+    <div class="voice-card">
+      <div class="voice-label">Not like this</div>
+      <p class="voice-ex">"Discover an amazing coliving experience in a stunning medieval village surrounded by breathtaking Asturian nature, where you can connect with like-minded digital nomads!"</p>
+      <p class="voice-why">Every word here is generic and could describe anywhere. "Amazing," "stunning," "breathtaking," "like-minded" — these are filler. Exclamation marks signal insecurity. If a sentence could appear in a Selina description, delete it.</p>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="sh">
+    <h2>Pricing</h2>
+    <span>Recommended structure</span>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-cell">
+      <div class="price-tier">Launch offer</div>
+      <div class="price-num">€950</div>
+      <div class="price-name">Founding Member Rate</div>
+      <ul class="price-includes">
+        <li>Private room, fully equipped</li>
+        <li>Fast fibre broadband</li>
+        <li>Utilities included</li>
+        <li>Weekly linen change</li>
+        <li>Daily communal breakfast</li>
+        <li>Access to common space</li>
+      </ul>
+      <p class="price-note">First 20 guests only. "You are shaping what El Primitivo becomes — founding members set the culture." Creates urgency without discounting.</p>
+    </div>
+    <div class="price-cell">
+      <div class="price-tier">Standard rate</div>
+      <div class="price-num">€1,100</div>
+      <div class="price-name">Monthly Stay</div>
+      <ul class="price-includes">
+        <li>All founding member inclusions</li>
+        <li>Standard ongoing rate post-launch</li>
+        <li>Minimum stay: 1 month</li>
+        <li>Preferred stay: 2–3 months</li>
+        <li>Slight discount for 2+ months</li>
+      </ul>
+      <p class="price-note">Market context: Anceu €882, Sende €960, Sun & Co €800–1,200. €1,100 is justified by the heritage story and positions above commodity rural coliving.</p>
+    </div>
+    <div class="price-cell">
+      <div class="price-tier">Adjacent revenue</div>
+      <div class="price-num">+€</div>
+      <div class="price-name">Walk-in Coworking</div>
+      <ul class="price-includes">
+        <li>Day pass: €15 (Camino pilgrims, day-trippers)</li>
+        <li>Week pass: €75</li>
+        <li>Team offsite: 8 houses × 1 week (Coconat model)</li>
+        <li>Camino guided stage: €40/person add-on</li>
+      </ul>
+      <p class="price-note">Walk-in coworking builds community at zero cost — Dojo Bali's core growth mechanic. Pilgrims walking through the plaza are the organic version of this.</p>
+    </div>
+  </div>
+
+  <!-- CHANNELS -->
+  <div class="sh">
+    <h2>Discovery Channels</h2>
+    <span>Where to reach each audience — priority order</span>
+  </div>
+  <div class="channels-grid">
+    <div class="channel-group">
+      <div class="channel-label">List before opening — free, permanent traffic</div>
+      <ul class="channel-list">
+        <li><span class="ch-name">Nomad List</span><span class="ch-note">Create a city profile for Salas + coliving listing. Nomads search here first.</span></li>
+        <li><span class="ch-name">Genki Guide</span><span class="ch-note">Submit to the "Rural Coliving Europe" list. Direct placement request to the editors.</span></li>
+        <li><span class="ch-name">Coliving.com</span><span class="ch-note">Create a space profile. High SEO value for "coliving Spain" searches.</span></li>
+        <li><span class="ch-name">Coliving.community</span><span class="ch-note">Same network as Anceu and Sende profiles. Trusted community reviews.</span></li>
+      </ul>
+    </div>
+    <div class="channel-group">
+      <div class="channel-label">Proactive outreach — the highest-value audience</div>
+      <ul class="channel-list">
+        <li><span class="ch-name">Zuzalu Telegram</span><span class="ch-note">Direct outreach to community channels. Zuzalu alumni seek European bases April–Oct.</span></li>
+        <li><span class="ch-name">Edge City newsletter</span><span class="ch-note">Email the organizers directly with a collab offer — they promote relevant spaces.</span></li>
+        <li><span class="ch-name">Vitalia channels</span><span class="ch-note">Vitalia runs Jan–Mar in Honduras. Their crowd needs somewhere in spring.</span></li>
+        <li><span class="ch-name">Twitter/X</span><span class="ch-note">The network state / intentional community conversation lives here. Post authentically.</span></li>
+      </ul>
+    </div>
+    <div class="channel-group">
+      <div class="channel-label">Camino audience — large, loyal, underserved</div>
+      <ul class="channel-list">
+        <li><span class="ch-name">Jakobsweg groups</span><span class="ch-note">German-language Facebook groups. Enormous reach, deeply loyal to Camino culture.</span></li>
+        <li><span class="ch-name">forums.caminodesantiago.me</span><span class="ch-note">The main English-language Camino forum. Post as a resource, not an ad.</span></li>
+        <li><span class="ch-name">Pilgrim apps</span><span class="ch-note">Buen Camino app, Gronze. List El Primitivo as accommodation with nomad-friendly note.</span></li>
+      </ul>
+    </div>
+    <div class="channel-group">
+      <div class="channel-label">Social — documentary tone, no performance</div>
+      <ul class="channel-list">
+        <li><span class="ch-name">Instagram</span><span class="ch-note">Castle in morning light. Cider being poured. River at dusk. Never "lifestyle" shots of laptops on café tables.</span></li>
+        <li><span class="ch-name">Newsletter</span><span class="ch-note">Monthly letter to the waitlist — what's happening in Salas, who stayed last month, what they made. Builds anticipation before opening.</span></li>
+        <li><span class="ch-name">PR pitch</span><span class="ch-note">The Euronews angle: "1,200-year-old pilgrimage route gains new kind of wanderer." Send to Euronews Travel, BBC Travel, Remote Work magazine.</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- MEDIA HOOK BAND -->
+<div class="media-band">
+  <div class="media-inner">
+    <div class="media-label">The Media Hook — for press outreach</div>
+    <p class="media-hook">"The oldest pilgrimage route in Europe — founded by Alfonso II in the 9th century — passes through a medieval Asturian village. Eight remote workers are turning it into a coliving space. They are not the first strangers to stay here. They are just the first to bring a laptop."</p>
+    <div class="media-targets">
+      <span class="media-target">Euronews Travel</span>
+      <span class="media-target">BBC Travel</span>
+      <span class="media-target">Remote Work magazine</span>
+      <span class="media-target">El País</span>
+      <span class="media-target">Nomad List blog</span>
+      <span class="media-target">Sueddeutsche Zeitung</span>
+      <span class="media-target">Wanderlust</span>
+    </div>
+    <p class="media-note">Send after first 3 guests have stayed. Include one quote from a resident, one local economic figure (€X spent in Salas that month), and one photo of the castle. Pitch the depopulation reversal angle — Rooral's €1,765/resident/month local spend story got them into 15+ publications unpaid.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="index.html">El Primitivo</a>
+  <span>Positioning Brief v1.0 · November 2026 · Internal use only</span>
+  <span><a href="market-research.html" style="color:inherit">← Market Research</a> &nbsp;·&nbsp; <a href="index.html" style="color:inherit">Landing Page →</a></span>
+</footer>
+
+</body>
+</html>
